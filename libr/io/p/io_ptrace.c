@@ -227,7 +227,8 @@ static int __close(RIODesc *desc) {
 	if (fd!=-1) close (fd);
 	free (desc->data);
 	desc->data = NULL;
-	return ptrace (PTRACE_DETACH, pid, 0, 0);
+	ptrace (PTRACE_DETACH, pid, 0, 0);
+	return true;
 }
 
 static int __system(RIO *io, RIODesc *fd, const char *cmd) {
